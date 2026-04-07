@@ -145,14 +145,17 @@ export default function BriefView({ data, onRefresh }) {
             </div>
 
             {/* Brief meta stats */}
-            {briefResult && (
+            {briefResult && (() => {
+              const elapsedMs = briefResult.elapsed_ms ?? briefResult.metadata?.elapsed_ms ?? 0;
+              const riskCount = briefResult.risk_count ?? briefResult.risks?.length ?? 0;
+              return (
               <div style={{
                 display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
                 gap: '4rem', marginTop: '2rem',
               }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <p style={{ fontSize: '1.875rem', fontWeight: 700, fontFamily: 'var(--font-headline)' }}>
-                    {(briefResult.elapsed_ms / 1000).toFixed(2)}s
+                    {(elapsedMs / 1000).toFixed(2)}s
                   </p>
                   <p style={{ fontSize: '0.75rem', color: 'var(--on-surface-variant)' }}>
                     Synthesis latency
@@ -172,14 +175,14 @@ export default function BriefView({ data, onRefresh }) {
                     fontFamily: 'var(--font-headline)',
                     color: briefResult.health === 'RED' ? 'var(--error)' : 'var(--primary)',
                   }}>
-                    {briefResult.risk_count} Risks
+                    {riskCount} Risks
                   </p>
                   <p style={{ fontSize: '0.75rem', color: 'var(--on-surface-variant)' }}>
                     Active risk flags
                   </p>
                 </div>
               </div>
-            )}
+            ); })()}
           </section>
 
           {/* Emerging Threats sidebar */}
