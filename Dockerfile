@@ -1,4 +1,4 @@
-# Multi-stage Dockerfile for Situation Room
+# Multi-stage Dockerfile for Vantage Point
 # Stage 1: Build React frontend
 # Stage 2: Serve with FastAPI (Python)
 
@@ -7,7 +7,7 @@ FROM node:20-alpine AS frontend-build
 
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
-RUN npm ci --production=false
+RUN npm install
 COPY frontend/ ./
 RUN npm run build
 

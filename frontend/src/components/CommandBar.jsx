@@ -13,9 +13,9 @@ export default function CommandBar() {
 
     setLoading(true);
     try {
-      await askQuestion(query);
+      const result = await askQuestion(query);
       setQuery('');
-      navigate('/brief');
+      navigate('/brief', { state: { briefResult: result } });
     } catch (err) {
       console.error('Ask failed:', err);
     } finally {

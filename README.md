@@ -28,7 +28,7 @@ Instead of manually checking emails, spreadsheets, and calendars every morning, 
                         └───────────┬─────────────┘
                                     │
                   ┌─────────────────▼──────────────────┐
-                  │    Command Center (Orchestrator)│
+                  │    Command Center (Orchestrator)   │
                   │    Plans → Delegates → Assembles   │
                   └──┬─────────┬──────────┬──────────┬─┘
                      │         │          │          │
@@ -41,13 +41,13 @@ Instead of manually checking emails, spreadsheets, and calendars every morning, 
             └─────────────┴──────────┘          │
                      │                          │
               ┌──────▼──────┐           ┌───────▼───────┐
-              │  MCP Servers│           │  Google       │
-              │  (FastMCP)  │          │  Gemini API   │
+              │ MCP Servers │           │  Google       │
+              │  (FastMCP)  │           │  Gemini API   │
               └──────┬──────┘           └───────────────┘
                      │
               ┌──────▼──────┐
               │  SQLite DB  │
-              │  (Persistent│
+              │ (Persistent │
               │   Storage)  │
               └─────────────┘
 ```

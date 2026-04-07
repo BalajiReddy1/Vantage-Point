@@ -1,12 +1,21 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { generateBrief } from '../api';
 
 export default function BriefView({ data, onRefresh }) {
   const navigate = useNavigate();
-  const [briefResult, setBriefResult] = useState(null);
+  const location = useLocation();
+  const [briefResult, setBriefResult] = useState(location.state?.briefResult || null);
   const [generating, setGenerating] = useState(false);
+
+  // When CommandBar navigates here with a fresh result, pick it up
+  useEffect(() => {
+    if (location.state?.briefResult) {
+      setBriefResult(location.state.briefResult);
+      if (onRefresh) onRefresh();
+    }
+  }, [location.state]);
 
   const handleGenerate = async () => {
     setGenerating(true);
